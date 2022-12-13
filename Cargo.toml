@@ -1,0 +1,21 @@
+[package]
+name = "arp-reply"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
+argh = "0.1"
+env_logger = "0.10"
+libc = "0.2"
+log = "0.4"
+nix = { version = "0.26", features = ["socket"] }
+serde_yaml = "0.9"
+smoltcp = { git = "https://github.com/smoltcp-rs/smoltcp.git", default-features = false, features = ["medium-ethernet", "phy-raw_socket", "socket-raw", "proto-ipv4"] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "z"
+panic = "abort"
+strip = true
